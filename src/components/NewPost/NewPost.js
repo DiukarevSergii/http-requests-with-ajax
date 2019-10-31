@@ -4,24 +4,23 @@ import axios from 'axios';
 import './NewPost.css';
 
 class NewPost extends Component {
-    constructor(){
-      super();
-      this.state = {
+    state = {
         title: '',
         content: '',
         author: 'Max'
-      };
     }
 
-    postDataHandler = async () => {
-      const data = {
-        title: this.state.title,
-        content: this.state.content,
-        author: this.state.author,
-      };
-      const responce = await axios.post('https://jsonplaceholder.typicode.com/posts/', data);
-      console.log(responce);
-    };
+    postDataHandler = () => {
+        const data = {
+            title: this.state.title,
+            body: this.state.content,
+            author: this.state.author
+        };
+        axios.post('/posts', data)
+            .then(response => {
+                console.log(response);
+            });
+    }
 
     render () {
         return (
